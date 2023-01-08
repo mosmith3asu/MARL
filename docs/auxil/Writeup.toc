@@ -1,0 +1,39 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {2}{Game Design Update}{4}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{1}{Issues with Current Game}{5}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{2}{Update Goals}{6}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{3}{List of Updates}{7}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{4}{Final Worlds}{8}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {3}{Training Policies}{9}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{1}{Training Setup}{10}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{2}{Algorithm}{11}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{3}{Creating Biased Policies}{16}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{4}{Results}{17}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{5}{Discussion}{24}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {4}{Simulation}{25}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{1}{Formulation}{26}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{2}{Hypothesis}{28}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{3}{Analysis}{29}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{4}{Results}{30}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {4}{5}{Discussion}{32}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {5}{Upcoming Work}{33}{0}{5}
