@@ -1,8 +1,10 @@
 import copy
+import logging
+
 import torch
 from os import listdir
-from IDQN_GPU.IDQN import DQN
-from IDQN_GPU.utilities.make_env import PursuitEvastionGame
+from QLearning import Qfunction
+from utilities.make_env import PursuitEvastionGame
 from itertools import count
 import numpy as np
 import pandas as pd
@@ -11,7 +13,7 @@ import matplotlib.pyplot as plt
 import random
 from utilities.config_manager import CFG
 
-
+import math
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 2000)
@@ -32,37 +34,45 @@ def main():
     global i_incorrect
     global group_face_colors
     global i_first_set
+    global i_last_set
     global test_cases
+    save_dir = "../results/policy_comparisons/"
+    save_indv_fname = "Fig_AssumptionComparison.png"
+    save_summary_fname = "Fig_AssumptionComparison_Summary.png"
 
+    WORLDS = [1, 2,3, 4,5,6]  #
+    test_episodes = 1000
+    c0 = 0.35 # inital color value
+    n_plts = len(WORLDS)
 
-    # algorithm_name = CFG.algorithm_name
-    # policy_type = CFG.algorithm_name
-
-    WORLDS = [1,3,4,5] # 3, 4, 5
-    test_episodes = 100
-    cinc = 0.25
-    c0 = 0.35
-    # group_face_colors = [(0.9,0*cinc, 0*cinc,1.0),(0.9, 1*cinc, 1*cinc,1.0),(0.9, 2*cinc, 2*cinc,1.0)]
-    group_face_colors = []
-
-    n_metrics = 9
-    n_worlds = len(WORLDS)
-
-
-    nRows, nCols = len(WORLDS)+1, 1
     dpi = 1 / plt.rcParams['figure.dpi']  # pixel in inches
-    figW,figH = 1500 * dpi, min(1000 * dpi, nRows * 400 * dpi)
-    fig, axs = plt.subplots(nRows, nCols, constrained_layout=True,figsize=(figW,figH))
-    move_figure(fig, 0, 0)
-    axs = np.reshape(axs,[nRows, nCols])
+
+
+    nRows, nCols = 1, 1
+    figW, figH = nCols*1300 * dpi, min(1000 * dpi, nRows * 400 * dpi)
+    summary_fig, summary_ax = plt.subplots(1,1,constrained_layout=True,figsize=(figW,figH))
+
+
+    if len(WORLDS)>=4:
+        nRows, nCols = math.ceil(n_plts/2), 2
+        figW, figH = nCols * 1300 * dpi, min(1000 * dpi, nRows * 400 * dpi)
+    else:
+        nRows, nCols = n_plts, 1
+        figW,figH = nCols*1300 * dpi, min(1000 * dpi, nRows * 400 * dpi)
+    comp_fig, comp_axs = plt.subplots(nRows, nCols, constrained_layout=True,figsize=(figW,figH))
+    # move_figure(fig, 0, 0)
+    comp_axs = np.reshape(comp_axs,[nRows, nCols])
+
 
     i_first_set = [0, 1]
-    test_cases = []
-    # n=0
-    # test_cases.append(['Baseline','Baseline']); n+=1
+    i_last_set = [-2,-1]
+    group_face_colors,test_cases = [], []
+    n=0
+    test_cases.append(['Baseline','Baseline']); n+=1
     # test_cases.append(['Averse', 'Baseline']);  n+=1
     # test_cases.append(['Seeking', 'Baseline']); n+=1
-    # group_face_colors += [(min([1, c0 + inc * (1-c0)/n]), inc * (1-c0), inc * (1-c0)/n, 1.0) for inc in range(n)]
+    group_face_colors += [(min([1, c0 + inc * (1-c0)/n]), inc * (1-c0), inc * (1-c0)/n, 1.0) for inc in range(n)]
+    i_first_set = [0]
 
     n=0
     # test_cases.append(['Baseline', 'Averse']);  n+=1
@@ -80,22 +90,24 @@ def main():
     i_correct = list(np.where(np.array(i_correct)==True)[0])
     i_incorrect = list(np.where(np.array(i_correct) == False)[0])
 
-    r,c= 0,0
+
+    iplt = 0
+    r,c= 0,-1
     all_data = None
     disp_df_master = None
     for iWorld in WORLDS:
         plot_df = None
-        fnames = listdir(f'C:\\Users\\mason\\Desktop\\MARL\\results\\IDQN_W{iWorld}\\')
+        #fnames = listdir(f'C:\\Users\\mason\\Desktop\\MARL\\results\\IDQN_W{iWorld}\\')
         for icase,case in enumerate(test_cases):
             policy_type = copy.deepcopy(case)
-            for ik in range(2):
-                if f'IDQN_{case[ik]}_extended.torch' in fnames:
-                    policy_type[ik] += '_extended'
 
             print(f'W{iWorld}: {case} \t {policy_type}')
-            policyR = DQN.load(iWorld, policy_type = policy_type[iR], algorithm='IDQN', verbose=False)
-            policyH = DQN.load(iWorld, policy_type = policy_type[iH], algorithm='IDQN', verbose=False)
-            disp_df,this_plot_df,data_df = test_policies(policyR,policyH,num_episodes=test_episodes)
+            policyR = Qfunction.load(iWorld, policy_type = policy_type[iR], algorithm=CFG.algorithm_name, verbose=False)
+            policyH = Qfunction.load(iWorld, policy_type = policy_type[iH], algorithm=CFG.algorithm_name, verbose=False)
+            plt.close(policyR.axes)
+            plt.close(policyH.axes)
+
+            disp_df,this_plot_df,data_df = test_policies(iWorld,policy_type,policyR,policyH,num_episodes=test_episodes)
 
             if plot_df is None:  plot_df = this_plot_df
             else: plot_df = pd.concat([plot_df, this_plot_df])
@@ -103,22 +115,30 @@ def main():
             if disp_df_master is None: disp_df_master = disp_df
             else: disp_df_master = pd.concat([disp_df_master,disp_df])
 
-            # data_df.loc[:,list(data_df.columns)[4]]  = [5,10,15,20][icase]
             if all_data is None: all_data = data_df
             else: all_data = pd.concat([all_data, data_df.copy()])
 
-        # print(all_data)
-        plot_evaluation(axs[r,c],iWorld,plot_df)
-        r += 1
+        c = iplt % nCols
+        r = math.floor(iplt/nCols)
+        print(f'W{iWorld}[{iplt}] = [{r},{c}]')
+        comp_ax = comp_axs[r,c]
+        has_legend = c==(nCols-1)
+        plot_evaluation(comp_ax,iWorld,plot_df,has_legend= has_legend)
+        iplt +=1
 
     print(disp_df_master)
-
     print('\n\n\n\n\n')
     print(all_data)
-    get_summary(axs[-1,c],all_data)
+
+    # comp_ax = comp_axs[-1,c]#subfigs[-1, iComp].subplots(1, 1)
+    # get_summary(comp_ax, all_data)
+
+    comp_fig.savefig(save_dir + save_indv_fname)
+    get_summary(summary_ax, all_data)
+    summary_fig.savefig(save_dir + save_summary_fname)
     plt.show()
 
-def get_summary(ax,df):
+def get_summary(ax,df,has_legend=True):
     global group_face_colors
     global test_cases
 
@@ -149,32 +169,62 @@ def get_summary(ax,df):
     df_summary.T.plot(ax=ax, kind="bar",color=group_face_colors)
     for tick in ax.get_xticklabels(): tick.set_rotation(0)
     ax.set_ylabel("Performance")  # ax.set_xlabel("Metric")
-    ax.set_title(f"Mean Results")
-    ax.legend(title='Conditions: ($\hat{\pi}_{H}$ x $\pi_{H}$)', bbox_to_anchor=(1.01, 1), loc='upper left',
-              borderaxespad=0)
+    ax.set_title(f"Mean Simulation Results")
+    if has_legend:
+        ax.legend(title='Conditions: ($\hat{\pi}_{H}$ x $\pi_{H}$)', bbox_to_anchor=(1.01, 1), loc='upper left',
+                  borderaxespad=0)
     # return df_summary
     set_true_style(ax)
-    ax.set_ylim([0, 20.1])
+    ax.set_ylim([0, 25.1])
 
-def test_policies(policyR,policyH,num_episodes,sigdig=2):
+
+
+
+
+def move_axes(ax, fig, subplot_spec=111):
+    """Move an Axes object from a figure to a new pyplot managed Figure in
+    the specified subplot."""
+
+    # get a reference to the old figure context so we can release it
+    old_fig = ax.figure
+
+    # remove the Axes from it's original Figure context
+    ax.remove()
+
+    # set the pointer from the Axes to the new figure
+    ax.figure = fig
+
+    # add the Axes to the registry of axes for the figure
+    fig.axes.append(ax)
+    # twice, I don't know why...
+    fig.add_axes(ax)
+
+    # then to actually show the Axes in the new figure we have to make
+    # a subplot with the positions etc for the Axes to go, so make a
+    # subplot which will have a dummy Axes
+    dummy_ax = fig.add_subplot(subplot_spec)
+
+    # then copy the relevant data from the dummy to the ax
+    ax.set_position(dummy_ax.get_position())
+
+    # then remove the dummy
+    dummy_ax.remove()
+
+    # close the figure the original axis was bound to
+    plt.close(old_fig)
+
+def test_policies(iWorld,policy_type,policyR,policyH,num_episodes,sigdig=2):
     torch.manual_seed(0)
     np.random.seed(0)
     random.seed(0)
     pscale = 10
     # Check and get parameters ###############
-    settingsR = policyR.run_config
-    settingsH = policyH.run_config
-    CHECKS = ['iWorld','device','dtype']
-    for check_key in CHECKS:  assert settingsR[check_key] == settingsH[check_key], f'Unmatched {check_key}'
+    device = 'cpu'
+    dtype = torch.float32#torch.__dict__[settingsR.dtype]
 
-    iWorld = settingsR['iWorld']
-    device = settingsR['device']
-    dtype = settingsR['dtype']
+    policy_types = f"({policy_name2sym[policy_type[iR]]} x {policy_name2sym[policy_type[iH]]})"
 
-    # policy_types = f"[W{iWorld}]({policy_name2sym[settingsR['policy_type']]} x {policy_name2sym[settingsH['policy_type']]})"
-    policy_types = f"({policy_name2sym[settingsR['policy_type']]} x {policy_name2sym[settingsH['policy_type']]})"
-
-    if settingsR['policy_type'] == settingsH['policy_type']: policy_types+='*'
+    if policy_type[iR] == policy_type[iH]: policy_types+='*'
     env = PursuitEvastionGame(iWorld, device, dtype)
 
     # Define data trackers ############
@@ -184,6 +234,11 @@ def test_policies(policyR,policyH,num_episodes,sigdig=2):
     phat_anotk = np.zeros([num_episodes,env.n_agents])
     in_pens = np.zeros([num_episodes, env.n_agents])
     catch_freq = np.zeros([7,7],dtype=int)
+
+    policyR = 10
+    policyH.rationality = 10
+
+    logging.warning('MODIFIED RATIONALITY')
 
     # Test in episodes ##############
     for episode_i in range(num_episodes):
@@ -223,8 +278,8 @@ def test_policies(policyR,policyH,num_episodes,sigdig=2):
     final_length,sig_length  = np.mean(length).round(sigdig), np.std(length).round(sigdig)
     final_psucc,sig_psucc   = np.mean(psucc).round(sigdig), np.std(psucc).round(sigdig)
 
-    _ptypes = f"(${policy_name2sym[settingsR['policy_type']]}$ x ${policy_name2sym[settingsH['policy_type']]}$)"
-    if settingsR['policy_type'] == settingsH['policy_type']: _ptypes += '*'
+    _ptypes = f"(${policy_name2sym[policy_type[iR]]}$ x ${policy_name2sym[policy_type[iH]]}$)"
+    if policy_type[iR] == policy_type[iH]: _ptypes += '*'
 
 
     plot_dict = {}
@@ -256,39 +311,10 @@ def test_policies(policyR,policyH,num_episodes,sigdig=2):
     disp_df = pd.DataFrame.from_dict(disp_dict)
     disp_df.set_index(['World','Case'], inplace=True)
 
-    # data_dict = {}
-    # data_dict["Case"] = [policy_types]
-    # data_dict["World"] = [iWorld]
-    # data_dict['reward_R'] = final_score[iR]
-    # data_dict['reward_H'] = final_score[iH]
-    # data_dict['reward_both'] = team_score
-    # data_dict['Episode Length'] = final_length
-    # data_dict['P(catch)'] = final_psucc
-    # data_dict['terminal state'] = [np.unravel_index(np.argmax(catch_freq), catch_freq.shape)]
-    # data_df = pd.DataFrame.from_dict(data_dict)
-    # data_df.set_index(['World', 'Case'], inplace=True)
-    # data_dict = {}
-    # data_dict["World"] = [f'{iWorld}']
-    # data_dict["Case"] = [_ptypes]
-    # data_dict["R's Cum Reward \n $\Sigma_{t} (R_{(R,t)}$)"] = [float(final_score[iR])]
-    # data_dict["H's Cum Reward \n $\Sigma_{t} (R_{(H,t)})$"] = [float(final_score[iH])]
-    # data_dict['Ave Cum Reward \n $\Sigma_{t} (\\bar{R}_{t}$)'] = [float(team_score)]
-    # data_dict['Episode Length \n $|T|$'] = [float(final_length)]
-    # data_dict["#R in Penalty \n$|s_{(R,t)} \; \in \; S_{\\rho}|$"] = [float(final_in_pen[iR])]
-    # data_dict["#H in Penalty \n$|s_{(H,t)} \; \in \; S_{\\rho}|$"] = [float(final_in_pen[iH])]
-    #
-    # data_dict['' if pscale == 1 else f'(x{pscale}) ' + 'Prob of Catching \n $P(catch)$'] = [pscale * float(final_psucc)]
-    # data_dict['' if pscale == 1 else f'(x{pscale}) ' + "R's MM(H) \n$\hat{p}(a_{(H,t)} | \hat{\pi}_{H})$"] = [
-    #     pscale * float(final_phata[iR])]
-    # data_dict['' if pscale == 1 else f'(x{pscale}) ' + "H's MM(R) \n$\hat{p}(a_{(R,t)} | \hat{\pi}_{R})$"] = [
-    #     pscale * float(final_phata[iH])]
-    # # data_dict['terminal state'] = [np.unravel_index(np.argmax(catch_freq), catch_freq.shape)]
-    # data_df = pd.DataFrame.from_dict(plot_dict)
-    # data_df.set_index(['World', 'Case'], inplace=True)
     data_df = plot_df.copy()
     return disp_df,plot_df,data_df
 
-def plot_evaluation(ax,iWorld,df):
+def plot_evaluation(ax,iWorld,df,has_legend=True):
     # group_face_colors = ['r','g','y','b','m']
 
     global group_face_colors
@@ -299,21 +325,33 @@ def plot_evaluation(ax,iWorld,df):
         new_indexs.append(index.replace(f'[W{iWorld}]', ""))
     df['Case'] = new_indexs
     df.set_index('Case', inplace=True)
-
     df = df.drop(columns = 'World')
+
+
     # Plot bar plot
-    df.T.plot(ax = ax,kind="bar",color=group_face_colors)#,,edgecolor=group_edge_colors)color=group_face_colors,
+    if has_legend:
+        df.T.plot(ax = ax,kind="bar",color=group_face_colors)#,,edgecolor=group_edge_colors)color=group_face_colors,
+        ax.legend(title='Conditions: ($\hat{\pi}_{H}$ x $\pi_{H}$)', bbox_to_anchor=(1.01, 1), loc='upper left',
+                  borderaxespad=0)
+    else:
+        df.T.plot(ax = ax,kind="bar",color=group_face_colors,legend=None)#,,edgecolor=group_edge_colors)color=group_face_colors,
+
+
+
     for tick in ax.get_xticklabels(): tick.set_rotation(0)
     ax.set_ylabel("Performance")  # ax.set_xlabel("Metric")
     ax.set_title(f"World {iWorld} - Simulated Conditions")
-    ax.legend(title='Conditions: ($\hat{\pi}_{H}$ x $\pi_{H}$)',bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0)
-    ax.set_ylim([0,20.1])
+
+
+
+    ax.set_ylim([0,25.1])
     set_true_style(ax)
 
 def set_true_style(ax):
     global i_correct
     global i_incorrect
     global i_first_set
+    global i_last_set
 
 
     #
@@ -321,7 +359,7 @@ def set_true_style(ax):
     # i_last_set = [-3,-2,-1]
 
 
-    i_last_set = [ i-len(i_first_set) for i in i_first_set]
+    # i_last_set = [ i-len(i_first_set) for i in i_first_set]
     w_pad = 0.25
 
     for icontainer in range(len(ax.containers[0])):
@@ -349,28 +387,16 @@ def set_true_style(ax):
             # i+=1
 
 
-def fix_policy_type():
-    iWorld = 4
-    algorithm_name = 'IDQN'
-    test_cases = ['Baseline','Averse','Seeking']
-    for case in test_cases:
-        policy_type = case
-        print(f'Runnung: {case}')
-        policyR = DQN.load(iWorld, case, algorithm=algorithm_name, verbose=False)
-        policyR.run_config['policy_type'] = case
-        DQN.save(policyR, iWorld, policy_type, algorithm_name)
-
-
-def move_figure(f, x, y):
-    """Move figure's upper left corner to pixel (x, y)"""
-    backend = matplotlib.get_backend()
-    if backend == 'TkAgg':
-        f.canvas.manager.window.wm_geometry("+%d+%d" % (x, y))
-    elif backend == 'WXAgg':
-        f.canvas.manager.window.SetPosition((x, y))
-    else:
-        # This works for QT and GTK
-        # You can also use window.setGeometry
-        f.canvas.manager.window.move(x, y)
+# def move_figure(f, x, y):
+#     """Move figure's upper left corner to pixel (x, y)"""
+#     backend = matplotlib.get_backend()
+#     if backend == 'TkAgg':
+#         f.canvas.manager.window.wm_geometry("+%d+%d" % (x, y))
+#     elif backend == 'WXAgg':
+#         f.canvas.manager.window.SetPosition((x, y))
+#     else:
+#         # This works for QT and GTK
+#         # You can also use window.setGeometry
+#         f.canvas.manager.window.move(x, y)
 if __name__ == "__main__":
     main()

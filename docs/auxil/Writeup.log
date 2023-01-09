@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2023.1.8)  8 JAN 2023 10:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2023.1.8)  9 JAN 2023 00:09
 entering extended mode
 **./Writeup.tex
 (Writeup.tex
@@ -1621,7 +1621,21 @@ Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 \c@subfigure=\count473
 \c@subtable=\count474
 )
-Package hyperref Info: Option `unicode' set `true' on input line 50.
+
+Writeup.tex:63: LaTeX Error: Command \forall already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.63 \DeclareMathOperator{\forall}{\;\;\forall\;}
+                                                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Package hyperref Info: Option `unicode' set `true' on input line 77.
 (C:\Users\mason\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2020-05-15 v7.00e Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1636,32 +1650,32 @@ Package biblatex Warning: Patching footnotes failed.
 (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.aux)
 \openout1 = `Writeup.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 57.
-LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 5
-7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 83.
+LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 8
+3.
 
 ("C:\Program Files\MiKTeX\tex/latex/cbfonts-fd\lgrcmr.fd"
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1719,7 +1733,7 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
-Package hyperref Info: Link coloring OFF on input line 57.
+Package hyperref Info: Link coloring OFF on input line 83.
 
 (C:\Users\mason\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1733,9 +1747,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count483
 )
-LaTeX Info: Redefining \ref on input line 57.
-LaTeX Info: Redefining \pageref on input line 57.
-LaTeX Info: Redefining \nameref on input line 57.
+LaTeX Info: Redefining \ref on input line 83.
+LaTeX Info: Redefining \pageref on input line 83.
+LaTeX Info: Redefining \nameref on input line 83.
  (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.out)
 (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.out)
 \@outlinefile=\write8
@@ -1783,8 +1797,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Writeup.bbl' not found.
 
 No file Writeup.bbl.
-Package biblatex Info: Reference section=0 on input line 57.
-Package biblatex Info: Reference segment=0 on input line 57.
+Package biblatex Info: Reference section=0 on input line 83.
+Package biblatex Info: Reference segment=0 on input line 83.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.nav) [1
@@ -1793,71 +1807,71 @@ Package caption Info: End \AtBeginDocument code.
 (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 98.
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 113
+.
 
 (C:\Users\mason\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 113
+.
 
 (C:\Users\mason\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 [3
 
-] (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [4
+] [4
 
-] [5
+] (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [5
 
 ] [6
 
+] [7
+
 ]
-Overfull \vbox (13.55852pt too high) detected at line 173
+Overfull \vbox (1.55852pt too high) detected at line 218
  []
 
-[7
+[8
 
 ]
-<../results/Fig_Worlds.png, id=316, 1387.584pt x 704.6325pt>
+<../results/Fig_Worlds.png, id=194, 1387.584pt x 704.6325pt>
 File: ../results/Fig_Worlds.png Graphic file (type png)
 <use ../results/Fig_Worlds.png>
-Package pdftex.def Info: ../results/Fig_Worlds.png  used on input line 184.
+Package pdftex.def Info: ../results/Fig_Worlds.png  used on input line 229.
 (pdftex.def)             Requested size: 325.17949pt x 165.12633pt.
- [8
+ [9
 
  <../results/Fig_Worlds.png>]
-(C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [9
+(C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [10
 
 ]
 Package acronym Info: Label `acro:ToM' newly defined as it shall be overridden
-although it is yet undefined on input line 205.
+although it is yet undefined on input line 250.
 Package acronym Info: Label `acro:QRE' newly defined as it shall be overridden
-although it is yet undefined on input line 205.
+although it is yet undefined on input line 250.
 Package acronym Info: Label `acro:CPT' newly defined as it shall be overridden
-although it is yet undefined on input line 205.
- [10
+although it is yet undefined on input line 250.
+ [11
+
+] [12
+
+] [13
 
 ]
-Overfull \vbox (36.58774pt too high) detected at line 232
- []
-
-[11
-
-]
-Writeup.tex:261: Missing $ inserted.
+Writeup.tex:327: Missing $ inserted.
 <inserted text> 
                 $
-l.261 \end{frame}
+l.327 \end{frame}
                  
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-Writeup.tex:261: Extra }, or forgotten $.
+Writeup.tex:327: Extra }, or forgotten $.
 \beamerx@\emph #1#2->{\only #2{\itshape }#1}
                                             
-l.261 \end{frame}
+l.327 \end{frame}
                  
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1865,10 +1879,10 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-Writeup.tex:261: Extra }, or forgotten $.
+Writeup.tex:327: Extra }, or forgotten $.
 <recently read> \egroup 
                         
-l.261 \end{frame}
+l.327 \end{frame}
                  
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1876,18 +1890,18 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-Writeup.tex:261: Missing $ inserted.
+Writeup.tex:327: Missing $ inserted.
 <inserted text> 
                 $
-l.261 \end{frame}
+l.327 \end{frame}
                  
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-Writeup.tex:261: Missing } inserted.
+Writeup.tex:327: Missing } inserted.
 <inserted text> 
                 }
-l.261 \end{frame}
+l.327 \end{frame}
                  
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1896,209 +1910,365 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Underfull \hbox (badness 10000) detected at line 261
+Underfull \hbox (badness 10000) detected at line 327
 [][]
  []
 
-Writeup.tex:261: Missing } inserted.
+Writeup.tex:327: Missing } inserted.
 <inserted text> 
                 }
-l.261 \end{frame}
+l.327 \end{frame}
                  
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
-
-
-Overfull \hbox (17.07181pt too wide) in paragraph at lines 261--261
- []  
- []
-
-
-Overfull \vbox (51.68861pt too high) detected at line 261
- []
-
-[12
-
-]
-Package acronym Info: Label `acro:AUIC' newly defined as it shall be overridden
-
-although it is yet undefined on input line 293.
- [13
-
-]
-Overfull \vbox (12.86108pt too high) detected at line 324
- []
 
 [14
 
 ]
-<../results/Fig_AUIC.png, id=533, 1517.67pt x 867.24pt>
-File: ../results/Fig_AUIC.png Graphic file (type png)
-<use ../results/Fig_AUIC.png>
-Package pdftex.def Info: ../results/Fig_AUIC.png  used on input line 334.
-(pdftex.def)             Requested size: 325.17949pt x 185.81778pt.
+Package acronym Info: Label `acro:AUIC' newly defined as it shall be overridden
+
+although it is yet undefined on input line 358.
  [15
 
- <../results/Fig_AUIC.png>] [16
+] [16
+
+] [17
 
 ]
-Overfull \vbox (55.45856pt too high) detected at line 368
- []
+<../results/Fig_AUIC.png, id=283, 1517.67pt x 867.24pt>
+File: ../results/Fig_AUIC.png Graphic file (type png)
+<use ../results/Fig_AUIC.png>
+Package pdftex.def Info: ../results/Fig_AUIC.png  used on input line 406.
+(pdftex.def)             Requested size: 325.17949pt x 185.81778pt.
+ [18
 
-[17
+ <../results/Fig_AUIC.png>] [19
+
+] [20
+
+] [21
 
 ]
-<../results/IDQN_W1/Fig_W1_JointQ_Averse.png, id=613, 801.4743pt x 452.4102pt>
+<../results/IDQN_W1/Fig_W1_JointQ_Averse.png, id=309, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W1/Fig_W1_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W1/Fig_W1_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W1/Fig_W1_JointQ_Averse.png  used on i
-nput line 394.
+nput line 471.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W1/Fig_W1_JointQ_Seeking.png, id=614, 801.4743pt x 452.4102pt>
+<../results/IDQN_W1/Fig_W1_JointQ_Seeking.png, id=310, 801.4743pt x 452.4102pt>
 
 File: ../results/IDQN_W1/Fig_W1_JointQ_Seeking.png Graphic file (type png)
 <use ../results/IDQN_W1/Fig_W1_JointQ_Seeking.png>
 Package pdftex.def Info: ../results/IDQN_W1/Fig_W1_JointQ_Seeking.png  used on 
-input line 394.
+input line 471.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
- [18
+ [22
 
  <../results/IDQN_W1/Fig_W1_JointQ_Averse.png> <../results/IDQN_W1/Fig_W1_Joint
 Q_Seeking.png>]
-<../results/IDQN_W2/Fig_W2_JointQ_Averse.png, id=648, 801.4743pt x 452.4102pt>
+<../results/IDQN_W2/Fig_W2_JointQ_Averse.png, id=324, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W2/Fig_W2_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W2/Fig_W2_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W2/Fig_W2_JointQ_Averse.png  used on i
-nput line 416.
+nput line 493.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W2/Fig_W2_JointQ_Seeking.png, id=649, 801.4743pt x 452.4102pt>
+<../results/IDQN_W2/Fig_W2_JointQ_Seeking.png, id=325, 801.4743pt x 452.4102pt>
 
 File: ../results/IDQN_W2/Fig_W2_JointQ_Seeking.png Graphic file (type png)
 <use ../results/IDQN_W2/Fig_W2_JointQ_Seeking.png>
 Package pdftex.def Info: ../results/IDQN_W2/Fig_W2_JointQ_Seeking.png  used on 
-input line 416.
+input line 493.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
- [19
+ [23
 
  <../results/IDQN_W2/Fig_W2_JointQ_Averse.png> <../results/IDQN_W2/Fig_W2_Joint
 Q_Seeking.png>]
-<../results/IDQN_W3/Fig_W3_JointQ_Averse.png, id=684, 801.4743pt x 452.4102pt>
+<../results/IDQN_W3/Fig_W3_JointQ_Averse.png, id=339, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W3/Fig_W3_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W3/Fig_W3_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W3/Fig_W3_JointQ_Averse.png  used on i
-nput line 439.
+nput line 516.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W3/Fig_W3_JointQ_Seeking.png, id=685, 801.4743pt x 452.4102pt>
+<../results/IDQN_W3/Fig_W3_JointQ_Seeking.png, id=340, 801.4743pt x 452.4102pt>
 
 File: ../results/IDQN_W3/Fig_W3_JointQ_Seeking.png Graphic file (type png)
 <use ../results/IDQN_W3/Fig_W3_JointQ_Seeking.png>
 Package pdftex.def Info: ../results/IDQN_W3/Fig_W3_JointQ_Seeking.png  used on 
-input line 439.
+input line 516.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
- [20
+ [24
 
  <../results/IDQN_W3/Fig_W3_JointQ_Averse.png> <../results/IDQN_W3/Fig_W3_Joint
 Q_Seeking.png>]
-<../results/IDQN_W4/Fig_W4_JointQ_Averse.png, id=719, 801.4743pt x 452.4102pt>
+<../results/IDQN_W4/Fig_W4_JointQ_Averse.png, id=354, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W4/Fig_W4_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W4/Fig_W4_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W4/Fig_W4_JointQ_Averse.png  used on i
-nput line 462.
+nput line 539.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W4/Fig_W4_JointQ_Seeking.png, id=720, 801.4743pt x 452.4102pt>
+<../results/IDQN_W4/Fig_W4_JointQ_Seeking.png, id=355, 801.4743pt x 452.4102pt>
 
 File: ../results/IDQN_W4/Fig_W4_JointQ_Seeking.png Graphic file (type png)
 <use ../results/IDQN_W4/Fig_W4_JointQ_Seeking.png>
 Package pdftex.def Info: ../results/IDQN_W4/Fig_W4_JointQ_Seeking.png  used on 
-input line 462.
+input line 539.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
- [21
+ [25
 
  <../results/IDQN_W4/Fig_W4_JointQ_Averse.png> <../results/IDQN_W4/Fig_W4_Joint
 Q_Seeking.png>]
-<../results/IDQN_W5/Fig_W5_JointQ_Averse.png, id=754, 801.4743pt x 452.4102pt>
+<../results/IDQN_W5/Fig_W5_JointQ_Averse.png, id=370, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W5/Fig_W5_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W5/Fig_W5_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W5/Fig_W5_JointQ_Averse.png  used on i
-nput line 485.
+nput line 562.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W5/Fig_W5_JointQ_Seeking.png, id=755, 801.4743pt x 452.4102pt>
+<../results/IDQN_W5/Fig_W5_JointQ_Seeking.png, id=371, 801.4743pt x 452.4102pt>
 
 File: ../results/IDQN_W5/Fig_W5_JointQ_Seeking.png Graphic file (type png)
 <use ../results/IDQN_W5/Fig_W5_JointQ_Seeking.png>
 Package pdftex.def Info: ../results/IDQN_W5/Fig_W5_JointQ_Seeking.png  used on 
-input line 485.
+input line 562.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
- [22
+ [26
 
  <../results/IDQN_W5/Fig_W5_JointQ_Averse.png> <../results/IDQN_W5/Fig_W5_Joint
 Q_Seeking.png>]
-<../results/IDQN_W6/Fig_W6_JointQ_Averse.png, id=788, 801.4743pt x 452.4102pt>
+<../results/IDQN_W6/Fig_W6_JointQ_Averse.png, id=385, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W6/Fig_W6_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W6/Fig_W6_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W6/Fig_W6_JointQ_Averse.png  used on i
-nput line 507.
+nput line 584.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W6//Fig_W6_JointQ_Seeking.png, id=789, 803.6424pt x 452.4102pt
+<../results/IDQN_W6//Fig_W6_JointQ_Seeking.png, id=386, 803.6424pt x 452.4102pt
 >
 File: ../results/IDQN_W6//Fig_W6_JointQ_Seeking.png Graphic file (type png)
 <use ../results/IDQN_W6//Fig_W6_JointQ_Seeking.png>
 Package pdftex.def Info: ../results/IDQN_W6//Fig_W6_JointQ_Seeking.png  used on
- input line 507.
+ input line 584.
 (pdftex.def)             Requested size: 164.30028pt x 92.48926pt.
- [23
+ [27
 
  <../results/IDQN_W6/Fig_W6_JointQ_Averse.png> <../results/IDQN_W6//Fig_W6_Join
-tQ_Seeking.png>] [24
+tQ_Seeking.png>]
+<../results/IDQN_W7//Fig_W7_JointQ_Averse.png, id=400, 801.4743pt x 452.4102pt>
+
+File: ../results/IDQN_W7//Fig_W7_JointQ_Averse.png Graphic file (type png)
+<use ../results/IDQN_W7//Fig_W7_JointQ_Averse.png>
+Package pdftex.def Info: ../results/IDQN_W7//Fig_W7_JointQ_Averse.png  used on 
+input line 607.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+<../results/IDQN_W7/Fig_W7_JointQ_Seeking.png, id=401, 801.4743pt x 452.4102pt>
+
+File: ../results/IDQN_W7/Fig_W7_JointQ_Seeking.png Graphic file (type png)
+<use ../results/IDQN_W7/Fig_W7_JointQ_Seeking.png>
+Package pdftex.def Info: ../results/IDQN_W7/Fig_W7_JointQ_Seeking.png  used on 
+input line 607.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+ [28
+
+ <../results/IDQN_W7//Fig_W7_JointQ_Averse.png> <../results/IDQN_W7/Fig_W7_Join
+tQ_Seeking.png>]
+Writeup.tex:627: Undefined control sequence.
+\beamer@doifinframe ...nothing problem \footnonte 
+                                                  {e.i. there exists dis-coo...
+l.627 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[29
+
+] (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [30
+
+] [31
 
 ]
-(C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [25
+Writeup.tex:670: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   !
+l.670 \end{frame}
+                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
 
-] [26
+Writeup.tex:670: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   !
+l.670 \end{frame}
+                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+[32
+
+] [33
+
+] [34
 
 ]
-Overfull \vbox (5.99611pt too high) detected at line 589
- []
 
-[27
+Writeup.tex:728: LaTeX Error: Something's wrong--perhaps a missing \item.
 
-] [28
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.728 \end{frame}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-] [29
+
+Writeup.tex:728: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.728 \end{frame}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[35
+
+] [36
 
 ]
-<../results/policy_comparisons/Fig_AssumptionComparison.png, id=991, 1879.02pt 
-x 722.7pt>
-File: ../results/policy_comparisons/Fig_AssumptionComparison.png Graphic file (
-type png)
-<use ../results/policy_comparisons/Fig_AssumptionComparison.png>
+<../results/policy_comparisons/Fig_AssumptionComparison_W1.png, id=475, 1084.05
+pt x 289.08pt>
+File: ../results/policy_comparisons/Fig_AssumptionComparison_W1.png Graphic fil
+e (type png)
+<use ../results/policy_comparisons/Fig_AssumptionComparison_W1.png>
 Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
-.png  used on input line 637.
-(pdftex.def)             Requested size: 325.17949pt x 125.06287pt.
- [30
+_W1.png  used on input line 765.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+ [37
 
- <../results/policy_comparisons/Fig_AssumptionComparison.png>]
-<../results/policy_comparisons/Fig_AssumptionComparison_Summary.png, id=1020, 9
-39.51pt x 289.08pt>
+ <../results/policy_comparisons/Fig_AssumptionComparison_W1.png>]
+<../results/policy_comparisons/Fig_AssumptionComparison_W2.png, id=485, 1084.05
+pt x 289.08pt>
+File: ../results/policy_comparisons/Fig_AssumptionComparison_W2.png Graphic fil
+e (type png)
+<use ../results/policy_comparisons/Fig_AssumptionComparison_W2.png>
+Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
+_W2.png  used on input line 773.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+
+[38
+
+ <../results/policy_comparisons/Fig_AssumptionComparison_W2.png>]
+<../results/policy_comparisons/Fig_AssumptionComparison_W3.png, id=494, 1084.05
+pt x 289.08pt>
+File: ../results/policy_comparisons/Fig_AssumptionComparison_W3.png Graphic fil
+e (type png)
+<use ../results/policy_comparisons/Fig_AssumptionComparison_W3.png>
+Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
+_W3.png  used on input line 781.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+ [39
+
+ <../results/policy_comparisons/Fig_AssumptionComparison_W3.png>]
+<../results/policy_comparisons/Fig_AssumptionComparison_W4.png, id=503, 1084.05
+pt x 289.08pt>
+File: ../results/policy_comparisons/Fig_AssumptionComparison_W4.png Graphic fil
+e (type png)
+<use ../results/policy_comparisons/Fig_AssumptionComparison_W4.png>
+Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
+_W4.png  used on input line 789.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+ [40
+
+ <../results/policy_comparisons/Fig_AssumptionComparison_W4.png>]
+<../results/policy_comparisons/Fig_AssumptionComparison_W5.png, id=512, 1084.05
+pt x 289.08pt>
+File: ../results/policy_comparisons/Fig_AssumptionComparison_W5.png Graphic fil
+e (type png)
+<use ../results/policy_comparisons/Fig_AssumptionComparison_W5.png>
+Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
+_W5.png  used on input line 797.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+ [41
+
+ <../results/policy_comparisons/Fig_AssumptionComparison_W5.png>]
+<../results/policy_comparisons/Fig_AssumptionComparison_W6.png, id=521, 1084.05
+pt x 289.08pt>
+File: ../results/policy_comparisons/Fig_AssumptionComparison_W6.png Graphic fil
+e (type png)
+<use ../results/policy_comparisons/Fig_AssumptionComparison_W6.png>
+Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
+_W6.png  used on input line 806.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+ [42
+
+ <../results/policy_comparisons/Fig_AssumptionComparison_W6.png>]
+<../results/policy_comparisons/Fig_AssumptionComparison_W7.png, id=530, 1084.05
+pt x 289.08pt>
+File: ../results/policy_comparisons/Fig_AssumptionComparison_W7.png Graphic fil
+e (type png)
+<use ../results/policy_comparisons/Fig_AssumptionComparison_W7.png>
+Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
+_W7.png  used on input line 814.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+ [43
+
+ <../results/policy_comparisons/Fig_AssumptionComparison_W7.png>]
+<../results/policy_comparisons/Fig_AssumptionComparison_Summary.png, id=540, 10
+84.05pt x 289.08pt>
 File: ../results/policy_comparisons/Fig_AssumptionComparison_Summary.png Graphi
 c file (type png)
 <use ../results/policy_comparisons/Fig_AssumptionComparison_Summary.png>
 Package pdftex.def Info: ../results/policy_comparisons/Fig_AssumptionComparison
-_Summary.png  used on input line 644.
-(pdftex.def)             Requested size: 325.17949pt x 100.0547pt.
- [31
+_Summary.png  used on input line 822.
+(pdftex.def)             Requested size: 338.87422pt x 90.36374pt.
+ [44
 
- <../results/policy_comparisons/Fig_AssumptionComparison_Summary.png>]
-[32
+ <../results/policy_comparisons/Fig_AssumptionComparison_Summary.png>] [45
 
-] (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [33
+] [46
 
-] [34
+] [47
 
-] [35
+] [48
+
+]
+(C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.toc) [49
+
+] [50
+
+] [51
+
+]
+
+Writeup.tex:955: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.955 \end{frame}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[52
+
+] [53
 
 ]
 \tf@nav=\write9
@@ -2110,64 +2280,57 @@ _Summary.png  used on input line 644.
 \tf@snm=\write11
 \openout11 = `Writeup.snm'.
 
-
-(C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.aux)
+ (C:/Users\mason\Desktop\MARL\docs\auxil\Writeup.aux)
 Package rerunfilecheck Info: File `Writeup.out' has not changed.
-(rerunfilecheck)             Checksum: 5852DCE85304A4FAC634DB99B7B842E0;2290.
-
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                Writeup
-(biblatex)                and rerun LaTeX afterwards.
-
+(rerunfilecheck)             Checksum: 571BB260DF2187164C83691226F1D6E6;2807.
 Package logreq Info: Writing requests to 'Writeup.run.xml'.
 \openout1 = `Writeup.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36524 strings out of 479799
- 694435 string characters out of 2869724
- 1375599 words of memory out of 3000000
- 52708 multiletter control sequences out of 15000+200000
- 547418 words of font info for 75 fonts, out of 3000000 for 9000
+ 36700 strings out of 479799
+ 698987 string characters out of 2869724
+ 1373394 words of memory out of 3000000
+ 52822 multiletter control sequences out of 15000+200000
+ 547770 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 125i,23n,126p,783b,1120s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 125i,20n,126p,783b,755s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx7.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmbx9.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mason/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Users/mason/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mason/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/mas
-on/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/U
-sers/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.p
+blic/amsfonts/cm/cmbx8.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/mason/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mason/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Users/mason/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mas
+on/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/U
+sers/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.p
 fb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmmi8.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi9.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mason/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/mason/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mason/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mason/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mason/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users
-/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-<C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-sy5.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmsy6.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmsy7.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/mason/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/mason/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on C:/Users\mason\Desktop\MARL\docs\out\Writeup.pdf (35 pages, 3
-715250 bytes).
+/cmmi7.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi8.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmmi9.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mason/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mason/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/mason/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mason/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mason
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/User
+s/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
+y10.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmsy5.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmsy6.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy7.pfb><C:/Users/mason/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mason/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/mason/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/mason/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/maso
+n/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+
+Output written on C:/Users\mason\Desktop\MARL\docs\out\Writeup.pdf (53 pages, 4
+314220 bytes).
 PDF statistics:
- 1264 PDF objects out of 1440 (max. 8388607)
- 131 named destinations out of 1000 (max. 500000)
- 311 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 739 PDF objects out of 1000 (max. 8388607)
+ 182 named destinations out of 1000 (max. 500000)
+ 375 words of extra memory for PDF output out of 10000 (max. 10000000)
 

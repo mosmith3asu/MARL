@@ -242,6 +242,32 @@ class Qfunction(object):
         return self.solo2joint[aR.long(), aH.long()].clone().detach()
 
 
+    def sample_sim_action(self,obs,agent):
+        """
+        Sophistocation 0: n/a
+        Sophistocation 1: I assume you move with uniform probability
+        Sophistocation 2: I assume that (you assume I move with uniform probability)
+        Sophistocation 3: I assume that [you assume that (I assume you move with uniform probability)]
+        :param obs:
+        :return:
+        """
+
+        iR,iH = 0,1
+        assert agent in [0,1], 'unknown agne sampling'
+        n_batch = obs.shape[0]
+        ak_batch = torch.empty(n_batch)
+        pAnotk = torch.empty([n_batch,self.n_ego_actions])
+        qegok = self(obs)
+        pdAegok,qegok = self.QRE(qegok,get_pd=True,get_q=True)
+
+        for ibatch in range(n_batch):
+            if agent == iR: ak = torch.argmax(pdAegok[ibatch, iR, :])
+            else: ak = list(WeightedRandomSampler(pdAegok[ibatch, iH, :], 1, replacement=True))[0]
+            ak_batch[ibatch] = ak
+            pAnotk[ibatch, :] = pdAegok[ibatch, int(not (agent)), :]
+        return ak_batch, pAnotk
+
+
     def sample_action(self,obs,epsilon,best=False,agent=2):
         """
         Sophistocation 0: n/a

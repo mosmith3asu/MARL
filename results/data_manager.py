@@ -2,7 +2,6 @@
 # import matplotlib.pyplot as plt
 import logging
 import os
-
 from os import listdir
 
 

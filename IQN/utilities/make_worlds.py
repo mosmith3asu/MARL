@@ -140,8 +140,8 @@ class WorldDefinitions:
     # W7: object = WorldGenerator(iworld, start_obs, penalty_states)
 
     iworld = 7
-    start_obs = [[2, 5], [4, 3], [3, 5]]
-    penalty_states = [[4, 3], [5, 3],[5, 4], [2, 3]]
+    start_obs = [[1, 5], [4, 3], [3, 5]]
+    penalty_states = [[5, 2], [5, 3],[5, 4],[5, 5], [2, 3]]
     W7: object = WorldGenerator(iworld, start_obs, penalty_states)
 
 
