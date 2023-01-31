@@ -31,8 +31,6 @@ class PursuitEvastionGame(Env):
         self.prey_rationality = CFG.prey_rationality
         self.prey_dist_power = CFG.prey_dist_power
 
-
-
         self.scale_rcatch = 1.0
         self.scale_penalty = 1.0
 
