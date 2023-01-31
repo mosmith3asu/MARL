@@ -1,0 +1,133 @@
+algorithm_name  : "JointQ"
+
+#training:
+#WORLDS          : [1]      # [1,2,3,4,5,6,7]
+#WORLDS          : [2,3,4,5]      # [1,2,3,4,5,6,7]
+#WORLDS          : [5,4,3,2]      # [1,2,3,4,5,6,7]
+#WORLDS          : [3,4,5]      # [1,2,3,4,5,6,7]
+
+#WORLDS          : [1,2,3,4]      # [1,2,3,4,5,6,7]
+#WORLDS          : [5,6,7]      # [1,2,3,4,5,6,7]
+#WORLDS          : [4]
+WORLDS          : [6]
+policy_type     : ["Baseline"]
+
+
+#WORLDS          : [1,3]      # [1,2,3,4,5,6,7]
+#WORLDS          : [4]      # [1,2,3,4,5,6,7]
+#policy_type     : ["Averse"]
+
+
+#policy_type     : ["Baseline","Seeking"]
+
+#policy_type     : ["Seeking"]
+#policy_type     : ["Averse","Seeking"]
+#policy_type     : ["Baseline","Averse","Seeking"]
+
+is_loaded       : False
+is_continued    : False
+
+num_episodes    : 200_000 #75_000
+report_interval : 100
+test_interval   : 50
+test_episodes   : 5
+CPT_interval    : 200
+CPT_sensitivity_thresh : [0.1,1.0] #[0.1,0.75]
+rand_init_episodes : 100_000
+
+
+ToM         : 5     # sophistication
+GAMMA       : 0.99  # discount factor
+ET_DECAY    : 0.9   # eligibility traces decay
+rationality : 1     # Boltzmann rationality
+LR: # learning rate
+  Baseline: 0.001
+  Averse: 0.0005
+  Seeking: 0.001
+
+FF: # Forgetting factor
+  Baseline: 1
+  Averse: 1 #0.00001
+  Seeking: 1 #0.00001
+
+eps_schedule:
+  START: 1.0
+  END: 0.1
+  DECAY: 10000
+  EXPLORE: 5000
+
+pen_scale_schedule:
+  START: 1.0
+  END: 1.0
+  DECAY: 1
+  EXPLORE: 0
+
+rcatch_scale_schedule:
+  START: 1.0
+  END: 1.0
+  DECAY: 1
+  EXPLORE: 0
+
+device : "cpu"
+dtype  : "float32"
+
+#Qfunction:
+grid_sz: 7
+nxy               : 7     # height and width of world in Q-funciton
+reward_power      : 2     # scaled in Q-update not env
+DIR_EXPLORATION   : 10    # initial rho in exploration policy softmax(Q+rho)
+ENABLE_DIR_EXPLORE: False # decaying exploration reward for getting closer to target
+ENABLE_INIT_Q     : False # [NOT WORKING] initialize Q-fun with inadmissible state values
+
+#env:
+r_catch          : 25
+r_penalty        : -3
+p_penalty        : 0.5
+n_moves          : 20
+prey_rationality : 1
+prey_dist_power  : 2
+enable_penalty   : True
+enable_prey_move : True
+save_rewards_for_end: True
+
+n_jointA: 25
+n_egoA: 5
+n_agents: 2
+n_obs: 6
+
+########################################################################
+########################################################################
+#import yaml
+#import torch
+#from dataclasses import dataclass
+#
+#@dataclass
+#class Config:
+#    def __init__(self,path=None,depth=1,**kwargs):
+#        self._depth = depth
+#        if path is not None:
+#            with open(path, 'r') as file:
+#                kwargs = yaml.safe_load(file)
+#        for key in kwargs.keys():
+#            val = kwargs[key]
+#
+#
+#            if key == 'dtype':
+#                val = torch.__dict__[val]
+#
+#            self.__dict__[key] =  Config(depth=depth+1,**val) if isinstance(val,dict) else val
+#    def __repr__(self):
+#        res = ''
+#        if self._depth ==1: res += '\nConfiguration:'
+#        for key in self.__dict__:
+#            if key != "_depth":
+#                tabs = "".join(['\t' for _ in range(self._depth)])
+#                res+=f'\n{tabs}| {key}: {self.__dict__[key]}'
+#
+#        if self._depth == 1: res += '\n'
+#        return res
+#    def __getitem__(self, key):
+#        return self.__dict__[key]
+#CFG = Config(r"C:\Users\mason\Desktop\MARL\IQN\config.yaml")
+########################################################################
+########################################################################

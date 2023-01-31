@@ -52,27 +52,28 @@ def main():
     figW, figH = nCols*1500 * dpi, min(1000 * dpi, nRows * 400 * dpi)
     summary_fig, summary_ax = plt.subplots(1,1,constrained_layout=True,figsize=(figW,figH))
 
-    i_first_set = [0, 1]
+    i_first_set = [0, 1]  # i_first_set = [0]
     i_last_set = [-2,-1]
     group_face_colors,test_cases = [], []
     n=0
     test_cases.append(['Baseline','Baseline']); n+=1
     # test_cases.append(['Averse', 'Baseline']);  n+=1
-    # test_cases.append(['Seeking', 'Baseline']); n+=1
+    test_cases.append(['Seeking', 'Baseline']); n+=1
     group_face_colors += [(min([1, c0 + inc * (1-c0)/n]), inc * (1-c0), inc * (1-c0)/n, 1.0) for inc in range(n)]
-    i_first_set = [0]
 
-    n=0
-    # test_cases.append(['Baseline', 'Averse']);  n+=1
-    test_cases.append(['Averse', 'Averse']);    n += 1
-    test_cases.append(['Seeking', 'Averse']);   n += 1
-    group_face_colors += [(inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), inc * (1-c0)/n, 1.0) for inc in range(n)]
+    # n=0
+    # # test_cases.append(['Baseline', 'Averse']);  n+=1
+    # test_cases.append(['Averse', 'Averse']);    n += 1
+    # test_cases.append(['Seeking', 'Averse']);   n += 1
+    # group_face_colors += [(inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), inc * (1-c0)/n, 1.0) for inc in range(n)]
 
     n = 0
-    # test_cases.append(['Baseline', 'Seeking']); n+=1
+    test_cases.append(['Baseline', 'Seeking']); n+=1
     test_cases.append(['Seeking', 'Seeking']);  n += 1
-    test_cases.append(['Averse', 'Seeking']); n += 1
+    # test_cases.append(['Averse', 'Seeking']); n += 1
     group_face_colors += [(inc * (1-c0)/n, inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), 1.0) for inc in range(n)]
+
+
 
     i_correct = [(case[0]==case[1])for case in test_cases]
     i_correct = list(np.where(np.array(i_correct)==True)[0])

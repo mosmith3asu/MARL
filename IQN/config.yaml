@@ -7,16 +7,24 @@ algorithm_name  : "JointQ"
 #WORLDS          : [3,4,5]      # [1,2,3,4,5,6,7]
 
 #WORLDS          : [1,2,3,4]      # [1,2,3,4,5,6,7]
-WORLDS          : [5,6,7]      # [1,2,3,4,5,6,7]
+#WORLDS          : [5,6,7]      # [1,2,3,4,5,6,7]
+#WORLDS          : [4]
+
+
+WORLDS          : [6]
+policy_type     : ["Baseline"]
+
 
 #WORLDS          : [1,3]      # [1,2,3,4,5,6,7]
 #WORLDS          : [4]      # [1,2,3,4,5,6,7]
+#policy_type     : ["Averse"]
+
 
 #policy_type     : ["Baseline","Seeking"]
-#policy_type     : ["Averse"]
+
 #policy_type     : ["Seeking"]
 #policy_type     : ["Averse","Seeking"]
-policy_type     : ["Baseline","Averse","Seeking"]
+#policy_type     : ["Baseline","Averse","Seeking"]
 
 is_loaded       : False
 is_continued    : False
@@ -27,7 +35,7 @@ test_interval   : 50
 test_episodes   : 5
 CPT_interval    : 200
 CPT_sensitivity_thresh : [0.1,1.0] #[0.1,0.75]
-rand_init_episodes : 100_000
+rand_init_episodes : 25_000
 
 
 ToM         : 5     # sophistication
@@ -66,6 +74,7 @@ device : "cpu"
 dtype  : "float32"
 
 #Qfunction:
+grid_sz: 7
 nxy               : 7     # height and width of world in Q-funciton
 reward_power      : 2     # scaled in Q-update not env
 DIR_EXPLORATION   : 10    # initial rho in exploration policy softmax(Q+rho)
@@ -81,8 +90,12 @@ prey_rationality : 1
 prey_dist_power  : 2
 enable_penalty   : True
 enable_prey_move : True
-
 save_rewards_for_end: True
+
+n_jointA: 25
+n_egoA: 5
+n_agents: 2
+n_obs: 6
 
 ########################################################################
 ########################################################################

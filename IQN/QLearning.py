@@ -49,6 +49,10 @@ class Qfunction(object):
         if verbose: print(
             f'\nLOADED EXISTING QNet \n\t| Path: {file_path} \n\t| Size: {file_size} \n\t| Device: {q.tensor_type["device"]}')
         plt.close(q.axes)
+        if'n_egoA' not in q.__dict__.keys():
+            q.n_egoA = q.n_ego_actions
+        if 'n_jointA' not in q.__dict__.keys():
+            q.n_jointA = q.n_act
 
         return q
 
@@ -78,15 +82,28 @@ class Qfunction(object):
     def __init__(self,device,dtype,sophistocation,run_config=None,rationality=1):
         #super(DQN, self).__init__()
 
-        # Env definition
-        nxy = CFG.nxy
-        self.n_act = 25
-        self.n_ego_actions = 5
-        self.n_obs = 6
-        self.n_agents = 2
-        self.axes = None
+        # this_CFG = run_config if run_config is not None else copy.deepcopy(CFG)
+        this_CFG = run_config
+        self.n_jointA = this_CFG.n_jointA
+        self.n_egoA = this_CFG.n_egoA
+        self.n_obs = this_CFG.n_obs
+        self.n_agents = this_CFG.n_agents
+        self.rationality = this_CFG.rationality
+        self.ToM = this_CFG.ToM
+        self.tensor_type = {'device': this_CFG.device, 'dtype': this_CFG.dtype}
+        self.run_config = this_CFG
         self.env = None
+        nxy = this_CFG.grid_sz
         self.nxy = nxy
+        # Env definition
+        # nxy = CFG.nxy
+        # self.n_jointA = 25
+        # self.n_egoA = 5
+        # self.n_obs = 6
+        # self.n_agents = 2
+        # self.axes = None
+        # self.env = None
+        # self.nxy = nxy
 
         self.rationality = rationality
         self.sophistocation = sophistocation
@@ -104,7 +121,7 @@ class Qfunction(object):
         self.ENABLE_DIR_EXPLORE = CFG.ENABLE_DIR_EXPLORE
         self.ENABLE_INIT_Q = CFG.ENABLE_INIT_Q
         self.q_inadmissable = -1e4
-        self.tbl = torch.zeros([self.n_agents, nxy, nxy, nxy, nxy, nxy, nxy, self.n_act])
+        self.tbl = torch.zeros([self.n_agents, nxy, nxy, nxy, nxy, nxy, nxy, self.n_jointA])
         self.state_visitation = torch.zeros([nxy, nxy, nxy, nxy, nxy, nxy])
         self.max_dist =  torch.dist(torch.tensor([0.,0.]), torch.tensor([4.,4.]))
         self.walls, self.pos_offset = self.init_walls()
@@ -197,10 +214,10 @@ class Qfunction(object):
 
         if s is None:   x0, y0, x1, y1, x2, y2 = [slice(None) for _  in range(self.n_obs)]
         else:           x0, y0, x1, y1, x2, y2 = list(zip(*s.reshape([-1, self.n_obs]).to(int)))
-        if a is None:   a,n_a = slice(None),self.n_act
+        if a is None:   a,n_a = slice(None),self.n_jointA
         else:           a,n_a =  a.flatten(),1#a.reshape([-1, 1])
         # K = tuple([ [[0,1]] for _ in range(s.shape[0])])
-        # # n_a = self.n_act if a is None else 1
+        # # n_a = self.n_jointA if a is None else 1
         # index = [K, x0, y0, x1, y1, x2, y2, a]
         index = [slice(None), x0, y0, x1, y1, x2, y2, a]
         tbl_slice = self.tbl[index]  # tbl_slice = self.tbl[:, x0, y0, x1, y1, x2, y2, a]
@@ -214,14 +231,14 @@ class Qfunction(object):
     def QRE(self,qAk,get_pd = True,get_q=False):
         sophistocation = self.sophistocation
         n_agents = self.n_agents
-        n_joint_act = self.n_act
-        n_ego_act = 5
+        n_joint_act = self.n_jointA
+        n_egaA = 5
         rationality = self.rationality
         n_batch = qAk.shape[0]
 
         pdAjointk = torch.ones([n_batch, n_agents, n_joint_act], **self.tensor_type) / n_joint_act
-        qAego = torch.empty([n_batch, n_agents, n_ego_act], **self.tensor_type)
-        pdAegok = torch.empty([n_batch, n_agents, n_ego_act], **self.tensor_type)
+        qAego = torch.empty([n_batch, n_agents, n_egaA], **self.tensor_type)
+        pdAegok = torch.empty([n_batch, n_agents, n_egaA], **self.tensor_type)
         for isoph in range(sophistocation):
             new_pdAjointk = torch.zeros([n_batch, n_agents, n_joint_act])
 
@@ -256,7 +273,7 @@ class Qfunction(object):
         assert agent in [0,1], 'unknown agne sampling'
         n_batch = obs.shape[0]
         ak_batch = torch.empty(n_batch)
-        pAnotk = torch.empty([n_batch,self.n_ego_actions])
+        pAnotk = torch.empty([n_batch,self.n_egoA])
         qegok = self(obs)
         pdAegok,qegok = self.QRE(qegok,get_pd=True,get_q=True)
 
@@ -267,65 +284,95 @@ class Qfunction(object):
             pAnotk[ibatch, :] = pdAegok[ibatch, int(not (agent)), :]
         return ak_batch, pAnotk
 
-
-    def sample_action(self,obs,epsilon,best=False,agent=2):
+    def sample_best_action(self,obs,agent=2):
         """
-        Sophistocation 0: n/a
-        Sophistocation 1: I assume you move with uniform probability
-        Sophistocation 2: I assume that (you assume I move with uniform probability)
-        Sophistocation 3: I assume that [you assume that (I assume you move with uniform probability)]
+        pAnotk: probability of partner (-k) actions given k's MM of -k
+        Qk_exp: expected quality of k controllable action
+        """
+        iR, iH, iBoth = 0, 1, 2
+        if agent == 0: kslice = 0
+        elif agent == 1: kslice = 1
+        elif agent == 2: kslice = slice(0,2)
+        else: raise Exception('unknown agent sampling')
+
+        n_batch = obs.shape[0]
+        ak = torch.empty([n_batch, self.n_agents], dtype=torch.int64)
+        aJ = torch.zeros([n_batch, 1], device=self.tensor_type['device'], dtype=torch.int64)
+        Qk_exp = torch.zeros([n_batch, self.n_agents, 1], **self.tensor_type)
+        pAnotk = torch.empty([n_batch, self.n_agents, self.n_egoA], **self.tensor_type)
+
+        with torch.no_grad():  # <=== CAUSED MEMORY ERROR WITHOUT ===
+            qAjointk = self(obs)  # agent k's quality over joint actions
+            pdAegok, qegok = self.QRE(qAjointk, get_pd=True, get_q=True)
+
+            for ibatch in range(n_batch):
+                # Each agen chooses the best controllable action => aJ = a_k X a_-k
+                # for themselves conditioned on partner action
+                aR = torch.argmax(pdAegok[ibatch, iR, :])
+                aH = torch.argmax(pdAegok[ibatch, iH, :])
+                aJ[ibatch] = self.solo2joint[aR, aH] # lookup table
+
+                # Store batch stats
+                ak[ibatch,iR] = aR
+                pAnotk[ibatch,iR,:] = pdAegok[ibatch, int(not (iR)), :]
+                Qk_exp[ibatch, iR ] = torch.sum(qegok[ibatch, iR] * pdAegok[ibatch, iR, :])
+
+                ak[ibatch,iH] = aH
+                pAnotk[ibatch, iH,:] = pdAegok[ibatch, int(not (iH)), :]
+                Qk_exp[ibatch, iH ] = torch.sum(qegok[ibatch, iH] * pdAegok[ibatch, iH, :])
+
+                # Assume perfect coordination (Pareto) (!! UNTESTED !!!)
+                # aJ = torch.argmax(torch.mean(qAjointk[ibatch,:,:],dim=1))
+                # aR,aH = self.joint2solo[aJ] # lookup table
+
+        return aJ[:,kslice], Qk_exp[:,kslice]
+
+    def sample_action(self, obs, epsilon, agent=2):
+        """
+        (ToM) Sophistocation 0: n/a
+        (ToM) Sophistocation 1: I assume you move with uniform probability
+        (ToM) Sophistocation 2: I assume that (you assume I move with uniform probability)
+        (ToM) Sophistocation 3: I assume that [you assume that (I assume you move with uniform probability)]
         :param obs:
         :return:
         """
-        # obs = obs - self.pos_offset
-        #
-        #
-
-        if best: epsilon=0
-
-        iR,iH,iBoth = 0,1,2
-        assert agent in [0,1,2], 'unknown agne sampling'
+        iR, iH, iBoth = 0, 1, 2
+        if agent == 0: kslice = 0
+        elif agent == 1: kslice = 1
+        elif agent == 2: kslice = slice(0, 2)
+        else: raise Exception('unknown agent sampling')
 
         n_batch = obs.shape[0]
-        ak = torch.empty(n_batch)
-        pAnotk = torch.empty([n_batch,self.n_ego_actions])
+        ak = torch.empty([n_batch, self.n_agents], dtype=torch.int64)
         aJ = torch.zeros([n_batch, 1], device=self.tensor_type['device'], dtype=torch.int64)
+        Qk_exp = torch.zeros([n_batch, self.n_agents], **self.tensor_type)
+        pAnotk = torch.empty([n_batch, self.n_agents, self.n_egoA], **self.tensor_type)
 
         if torch.rand(1) < epsilon:
-            if self.ENABLE_DIR_EXPLORE:
-                q_undir = torch.rand([1,25])
-                q_dir = self.directed_exploration(obs- self.pos_offset)
-                pdAJ = torch.softmax(q_dir + q_undir, dim=-1)
-                aJ = torch.tensor([list(WeightedRandomSampler(pdAJ.squeeze(), 1, replacement=True))])
-            else:
-                aJ = torch.randint(0, self.n_act, [n_batch, 1], device = self.tensor_type['device'], dtype=torch.int64)
+            aJ = torch.randint(0, self.n_jointA, [n_batch, 1], device=self.tensor_type['device'], dtype=torch.int64)
         else:
-            qegok = self(obs)
-            # is_zeros = all(torch.all(torch.all(qegok==0,dim=2),dim=0).numpy())
-            # if not is_zeros: logging.warning(f'FOUND Q-VALUE qego = {qegok.numpy()}')
-            pdAegok,qegok = self.QRE(qegok,get_pd=True,get_q=True)
+            with torch.no_grad():  # <=== CAUSED MEMORY ERROR WITHOUT ===
+                qAjointk = self(obs)  # agent k's quality over joint actions
+                pdAegok, qegok = self.QRE(qAjointk, get_pd=True, get_q=True)
 
-            for ibatch in range(n_batch):
-                if best:
-                    aR,aH = [torch.argmax(pdAegok[ibatch, k, :]) for k in range(2)]
-                else:
+                for ibatch in range(n_batch):
+                    # Noisy rational sample both agent actions
                     aR = list(WeightedRandomSampler(pdAegok[ibatch, 0, :], 1, replacement=True))[0]
                     aH = list(WeightedRandomSampler(pdAegok[ibatch, 1, :], 1, replacement=True))[0]
-                aJ[ibatch] = self.solo2joint[aR,aH]
-                if agent == iR :
-                    ak[ibatch] = aR
-                    pAnotk[ibatch,:] = pdAegok[ibatch, int(not(iR)), :]
-                elif agent == iH:
-                    ak[ibatch] = aH
-                    pAnotk[ibatch,:] = pdAegok[ibatch,  int(not(iH)), :]
+                    aJ[ibatch] = self.solo2joint[aR, aH]
 
-        if agent == iBoth:
-            if best:
-                # Qk_max = torch.max(qegok,dim=-1, keepdim=True)[0]
-                Qk_exp  = torch.sum(qegok*pdAegok,dim=2,keepdim=True)
-                return aJ, Qk_exp
-            else: return aJ
-        else:  return ak,pAnotk
+                    # Store batch stats
+                    ak[ibatch, iR] = aR
+                    pAnotk[ibatch, iR, :] = pdAegok[ibatch, int(not (iR)), :]
+                    Qk_exp[ibatch, iR] = torch.sum(qegok[ibatch, iR] * pdAegok[ibatch, iR, :])
+
+                    ak[ibatch, iH] = aH
+                    pAnotk[ibatch, iH, :] = pdAegok[ibatch, int(not (iH)), :]
+                    Qk_exp[ibatch, iH] = torch.sum(qegok[ibatch, iH] * pdAegok[ibatch, iH, :])
+
+        if agent == iBoth: return aJ
+        else:  return ak[:, kslice], pAnotk[:, kslice]
+
 
     def update(self, transitions, ALPHA, GAMMA, LAMBDA,FORGET_FACTOR=1):
         # Unpack memory in batches
@@ -360,7 +407,9 @@ class Qfunction(object):
         #         self.tbl[k,x0,y0,x1,y1,x2,y2,a] = qSA_new
 
         qSA, index = self.Qindex(state_batch, action_batch, get_idx=True)
-        _, qSA_prime = self.sample_action(next_state_batch, epsilon=0, best=True)  #
+        # _, qSA_prime = self.sample_action(next_state_batch, epsilon=0, best=True)  #
+        _, qSA_prime = self.sample_best_action(next_state_batch)  #
+
         qSA_prime[done_mask] = 0
 
 
@@ -419,10 +468,10 @@ class Qfunction(object):
         obs = obs.reshape([-1, 6])
         n_batch = obs.shape[0]
         pos = obs.clone().detach().squeeze()
-        qEXP = torch.zeros([1,self.n_act])
+        qEXP = torch.zeros([1,self.n_jointA])
         #k_idxs = [[tuple(k * torch.ones(n_batch, dtype=torch.int)) for k in range(self.n_agents)]]
 
-        for aJ in range(self.n_act):
+        for aJ in range(self.n_jointA):
             aR,aH = self.joint2solo[aJ]
             next_pos = pos.clone().detach()
             next_pos[0:2] = self.move(aR, pos[0:2])
@@ -445,7 +494,7 @@ class Qfunction(object):
         return qEXP
     def move(self, ego_action, curr_pos):
         if isinstance(ego_action, torch.Tensor): ego_action = int(ego_action)
-        assert ego_action in range(self.n_ego_actions), 'Unknown ego action in env.move()'
+        assert ego_action in range(self.n_egoA), 'Unknown ego action in env.move()'
         action_name = self.idx2action[int(ego_action)]
         next_pos = curr_pos + self.explicit_actions[action_name]
         return next_pos

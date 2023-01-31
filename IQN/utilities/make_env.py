@@ -117,22 +117,61 @@ class PursuitEvastionGame(Env):
         if self.done: return self.current_positions
         new_positions =  self.current_positions.clone()
 
-        # Decide Prey action
+        # Decide Prey action ORIGONAL
         qA = torch.zeros(self.n_ego_actions)
         for ia in range(self.n_ego_actions):
             next_position = self.move(ia, self.current_positions[-1],force_valid_move=False)
             if self.check_valid_state(next_position):
+                # CORRECT FUNCTION ---------------------------------
                 # dist2k = torch.zeros([self.n_agents])
                 # for k in range(self.n_agents):
                 #     dist2k[k] = torch.dist(self.current_positions[k], next_position)
-                # qA[ia] = torch.linalg.norm(torch.abs(torch.pow(dist2k, self.prey_dist_power)))
+                # qA[ia] = torch.mean(dist2k) + torch.min(dist2k)
+
+
+                # ORIGONAL FUNCTION ---------------------------------
                 dist2k = torch.zeros([self.n_agents])
                 for k in range(self.n_agents):
-                    d = torch.dist(self.current_positions[k], next_position)
-                    dist2k[k] = self._max_dist**3 - (self._max_dist-d)**3
-                # qA[ia] = torch.linalg.norm(torch.abs(torch.pow(dist2k, self.prey_dist_power)))
-                qA[ia] = torch.mean(dist2k)
+                    dist2k[k] = torch.dist(self.current_positions[k], next_position)
+                qA[ia] = torch.linalg.norm(torch.abs(torch.pow(dist2k, self.prey_dist_power)))
+
+
+                # REVISED (DEPRICATED) FUNCTION ---------------------------------
+                # dist2k = torch.zeros([self.n_agents])
+                # for k in range(self.n_agents):
+                #     d = torch.dist(self.current_positions[k], next_position)
+                #     dist2k[k] = self._max_dist ** 3 - (self._max_dist - d) ** 3
+                # qA[ia] = torch.mean(dist2k)
             else:  qA[ia] = q_inadmissable
+
+        # Decide Prey action #!!! CORRECT !!!!!!!!!!!!!!
+        qA = torch.zeros(self.n_ego_actions)
+        for ia in range(self.n_ego_actions):
+            next_position = self.move(ia, self.current_positions[-1],force_valid_move=False)
+            if self.check_valid_state(next_position):
+                dist2k = torch.zeros([self.n_agents])
+                for k in range(self.n_agents):
+                    dist2k[k] = torch.dist(self.current_positions[k], next_position)
+                # qA[ia] = torch.pow(torch.mean(dist2k) + torch.min(dist2k),self.prey_dist_power)
+                qA[ia] = torch.mean(dist2k) + torch.min(dist2k)
+            else:  qA[ia] = q_inadmissable
+
+        # Decide Prey action
+        # qA = torch.zeros(self.n_ego_actions)
+        # for ia in range(self.n_ego_actions):
+        #     next_position = self.move(ia, self.current_positions[-1],force_valid_move=False)
+        #     if self.check_valid_state(next_position):
+        #         # dist2k = torch.zeros([self.n_agents])
+        #         # for k in range(self.n_agents):
+        #         #     dist2k[k] = torch.dist(self.current_positions[k], next_position)
+        #         # qA[ia] = torch.linalg.norm(torch.abs(torch.pow(dist2k, self.prey_dist_power)))
+        #         dist2k = torch.zeros([self.n_agents])
+        #         for k in range(self.n_agents):
+        #             d = torch.dist(self.current_positions[k], next_position)
+        #             dist2k[k] = self._max_dist**3 - (self._max_dist-d)**3
+        #         # qA[ia] = torch.linalg.norm(torch.abs(torch.pow(dist2k, self.prey_dist_power)))
+        #         qA[ia] = torch.mean(dist2k)
+        #     else:  qA[ia] = q_inadmissable
 
         pA = torch.special.softmax(self.prey_rationality * qA,dim=0)
         move = list(WeightedRandomSampler(pA, 1, replacement=True))[0]

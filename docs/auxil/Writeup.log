@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2023.1.8)  9 JAN 2023 00:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2023.1.8)  31 JAN 2023 07:24
 entering extended mode
 **./Writeup.tex
 (Writeup.tex
@@ -1952,126 +1952,126 @@ Package pdftex.def Info: ../results/Fig_AUIC.png  used on input line 406.
 ] [21
 
 ]
-<../results/IDQN_W1/Fig_W1_JointQ_Averse.png, id=309, 801.4743pt x 452.4102pt>
+<../results/IDQN_W1/Fig_W1_JointQ_Baseline.png, id=309, 801.4743pt x 452.4102pt
+>
+File: ../results/IDQN_W1/Fig_W1_JointQ_Baseline.png Graphic file (type png)
+<use ../results/IDQN_W1/Fig_W1_JointQ_Baseline.png>
+Package pdftex.def Info: ../results/IDQN_W1/Fig_W1_JointQ_Baseline.png  used on
+ input line 471.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+<../results/IDQN_W1/Fig_W1_JointQ_Averse.png, id=310, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W1/Fig_W1_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W1/Fig_W1_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W1/Fig_W1_JointQ_Averse.png  used on i
 nput line 471.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W1/Fig_W1_JointQ_Seeking.png, id=310, 801.4743pt x 452.4102pt>
-
-File: ../results/IDQN_W1/Fig_W1_JointQ_Seeking.png Graphic file (type png)
-<use ../results/IDQN_W1/Fig_W1_JointQ_Seeking.png>
-Package pdftex.def Info: ../results/IDQN_W1/Fig_W1_JointQ_Seeking.png  used on 
-input line 471.
-(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
  [22
 
- <../results/IDQN_W1/Fig_W1_JointQ_Averse.png> <../results/IDQN_W1/Fig_W1_Joint
-Q_Seeking.png>]
-<../results/IDQN_W2/Fig_W2_JointQ_Averse.png, id=324, 801.4743pt x 452.4102pt>
+ <../results/IDQN_W1/Fig_W1_JointQ_Baseline.png> <../results/IDQN_W1/Fig_W1_Joi
+ntQ_Averse.png>]
+<../results/IDQN_W2/Fig_W2_JointQ_Baseline.png, id=324, 801.4743pt x 452.4102pt
+>
+File: ../results/IDQN_W2/Fig_W2_JointQ_Baseline.png Graphic file (type png)
+<use ../results/IDQN_W2/Fig_W2_JointQ_Baseline.png>
+Package pdftex.def Info: ../results/IDQN_W2/Fig_W2_JointQ_Baseline.png  used on
+ input line 493.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+<../results/IDQN_W2/Fig_W2_JointQ_Averse.png, id=325, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W2/Fig_W2_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W2/Fig_W2_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W2/Fig_W2_JointQ_Averse.png  used on i
 nput line 493.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W2/Fig_W2_JointQ_Seeking.png, id=325, 801.4743pt x 452.4102pt>
-
-File: ../results/IDQN_W2/Fig_W2_JointQ_Seeking.png Graphic file (type png)
-<use ../results/IDQN_W2/Fig_W2_JointQ_Seeking.png>
-Package pdftex.def Info: ../results/IDQN_W2/Fig_W2_JointQ_Seeking.png  used on 
-input line 493.
-(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
  [23
 
- <../results/IDQN_W2/Fig_W2_JointQ_Averse.png> <../results/IDQN_W2/Fig_W2_Joint
-Q_Seeking.png>]
-<../results/IDQN_W3/Fig_W3_JointQ_Averse.png, id=339, 801.4743pt x 452.4102pt>
+ <../results/IDQN_W2/Fig_W2_JointQ_Baseline.png> <../results/IDQN_W2/Fig_W2_Joi
+ntQ_Averse.png>]
+<../results/IDQN_W3/Fig_W3_JointQ_Baseline.png, id=339, 801.4743pt x 452.4102pt
+>
+File: ../results/IDQN_W3/Fig_W3_JointQ_Baseline.png Graphic file (type png)
+<use ../results/IDQN_W3/Fig_W3_JointQ_Baseline.png>
+Package pdftex.def Info: ../results/IDQN_W3/Fig_W3_JointQ_Baseline.png  used on
+ input line 516.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+<../results/IDQN_W3/Fig_W3_JointQ_Averse.png, id=340, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W3/Fig_W3_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W3/Fig_W3_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W3/Fig_W3_JointQ_Averse.png  used on i
 nput line 516.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W3/Fig_W3_JointQ_Seeking.png, id=340, 801.4743pt x 452.4102pt>
-
-File: ../results/IDQN_W3/Fig_W3_JointQ_Seeking.png Graphic file (type png)
-<use ../results/IDQN_W3/Fig_W3_JointQ_Seeking.png>
-Package pdftex.def Info: ../results/IDQN_W3/Fig_W3_JointQ_Seeking.png  used on 
-input line 516.
-(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
  [24
 
- <../results/IDQN_W3/Fig_W3_JointQ_Averse.png> <../results/IDQN_W3/Fig_W3_Joint
-Q_Seeking.png>]
-<../results/IDQN_W4/Fig_W4_JointQ_Averse.png, id=354, 801.4743pt x 452.4102pt>
+ <../results/IDQN_W3/Fig_W3_JointQ_Baseline.png> <../results/IDQN_W3/Fig_W3_Joi
+ntQ_Averse.png>]
+<../results/IDQN_W4/Fig_W4_JointQ_Baseline.png, id=354, 1387.584pt x 704.6325pt
+>
+File: ../results/IDQN_W4/Fig_W4_JointQ_Baseline.png Graphic file (type png)
+<use ../results/IDQN_W4/Fig_W4_JointQ_Baseline.png>
+Package pdftex.def Info: ../results/IDQN_W4/Fig_W4_JointQ_Baseline.png  used on
+ input line 539.
+(pdftex.def)             Requested size: 164.30028pt x 83.42331pt.
+<../results/IDQN_W4/Fig_W4_JointQ_Averse.png, id=355, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W4/Fig_W4_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W4/Fig_W4_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W4/Fig_W4_JointQ_Averse.png  used on i
 nput line 539.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W4/Fig_W4_JointQ_Seeking.png, id=355, 801.4743pt x 452.4102pt>
-
-File: ../results/IDQN_W4/Fig_W4_JointQ_Seeking.png Graphic file (type png)
-<use ../results/IDQN_W4/Fig_W4_JointQ_Seeking.png>
-Package pdftex.def Info: ../results/IDQN_W4/Fig_W4_JointQ_Seeking.png  used on 
-input line 539.
-(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
  [25
 
- <../results/IDQN_W4/Fig_W4_JointQ_Averse.png> <../results/IDQN_W4/Fig_W4_Joint
-Q_Seeking.png>]
-<../results/IDQN_W5/Fig_W5_JointQ_Averse.png, id=370, 801.4743pt x 452.4102pt>
+ <../results/IDQN_W4/Fig_W4_JointQ_Baseline.png> <../results/IDQN_W4/Fig_W4_Joi
+ntQ_Averse.png>]
+<../results/IDQN_W5/Fig_W5_JointQ_Baseline.png, id=370, 801.4743pt x 452.4102pt
+>
+File: ../results/IDQN_W5/Fig_W5_JointQ_Baseline.png Graphic file (type png)
+<use ../results/IDQN_W5/Fig_W5_JointQ_Baseline.png>
+Package pdftex.def Info: ../results/IDQN_W5/Fig_W5_JointQ_Baseline.png  used on
+ input line 562.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+<../results/IDQN_W5/Fig_W5_JointQ_Averse.png, id=371, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W5/Fig_W5_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W5/Fig_W5_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W5/Fig_W5_JointQ_Averse.png  used on i
 nput line 562.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W5/Fig_W5_JointQ_Seeking.png, id=371, 801.4743pt x 452.4102pt>
-
-File: ../results/IDQN_W5/Fig_W5_JointQ_Seeking.png Graphic file (type png)
-<use ../results/IDQN_W5/Fig_W5_JointQ_Seeking.png>
-Package pdftex.def Info: ../results/IDQN_W5/Fig_W5_JointQ_Seeking.png  used on 
-input line 562.
-(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
  [26
 
- <../results/IDQN_W5/Fig_W5_JointQ_Averse.png> <../results/IDQN_W5/Fig_W5_Joint
-Q_Seeking.png>]
-<../results/IDQN_W6/Fig_W6_JointQ_Averse.png, id=385, 801.4743pt x 452.4102pt>
+ <../results/IDQN_W5/Fig_W5_JointQ_Baseline.png> <../results/IDQN_W5/Fig_W5_Joi
+ntQ_Averse.png>]
+<../results/IDQN_W6/Fig_W6_JointQ_Baseline.png, id=385, 801.4743pt x 452.4102pt
+>
+File: ../results/IDQN_W6/Fig_W6_JointQ_Baseline.png Graphic file (type png)
+<use ../results/IDQN_W6/Fig_W6_JointQ_Baseline.png>
+Package pdftex.def Info: ../results/IDQN_W6/Fig_W6_JointQ_Baseline.png  used on
+ input line 584.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+<../results/IDQN_W6/Fig_W6_JointQ_Averse.png, id=386, 801.4743pt x 452.4102pt>
 File: ../results/IDQN_W6/Fig_W6_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W6/Fig_W6_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W6/Fig_W6_JointQ_Averse.png  used on i
 nput line 584.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W6//Fig_W6_JointQ_Seeking.png, id=386, 803.6424pt x 452.4102pt
->
-File: ../results/IDQN_W6//Fig_W6_JointQ_Seeking.png Graphic file (type png)
-<use ../results/IDQN_W6//Fig_W6_JointQ_Seeking.png>
-Package pdftex.def Info: ../results/IDQN_W6//Fig_W6_JointQ_Seeking.png  used on
- input line 584.
-(pdftex.def)             Requested size: 164.30028pt x 92.48926pt.
  [27
 
- <../results/IDQN_W6/Fig_W6_JointQ_Averse.png> <../results/IDQN_W6//Fig_W6_Join
-tQ_Seeking.png>]
-<../results/IDQN_W7//Fig_W7_JointQ_Averse.png, id=400, 801.4743pt x 452.4102pt>
+ <../results/IDQN_W6/Fig_W6_JointQ_Baseline.png> <../results/IDQN_W6/Fig_W6_Joi
+ntQ_Averse.png>]
+<../results/IDQN_W7/Fig_W7_JointQ_Baseline.png, id=400, 801.4743pt x 452.4102pt
+>
+File: ../results/IDQN_W7/Fig_W7_JointQ_Baseline.png Graphic file (type png)
+<use ../results/IDQN_W7/Fig_W7_JointQ_Baseline.png>
+Package pdftex.def Info: ../results/IDQN_W7/Fig_W7_JointQ_Baseline.png  used on
+ input line 607.
+(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
+<../results/IDQN_W7//Fig_W7_JointQ_Averse.png, id=401, 801.4743pt x 452.4102pt>
 
 File: ../results/IDQN_W7//Fig_W7_JointQ_Averse.png Graphic file (type png)
 <use ../results/IDQN_W7//Fig_W7_JointQ_Averse.png>
 Package pdftex.def Info: ../results/IDQN_W7//Fig_W7_JointQ_Averse.png  used on 
 input line 607.
 (pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
-<../results/IDQN_W7/Fig_W7_JointQ_Seeking.png, id=401, 801.4743pt x 452.4102pt>
-
-File: ../results/IDQN_W7/Fig_W7_JointQ_Seeking.png Graphic file (type png)
-<use ../results/IDQN_W7/Fig_W7_JointQ_Seeking.png>
-Package pdftex.def Info: ../results/IDQN_W7/Fig_W7_JointQ_Seeking.png  used on 
-input line 607.
-(pdftex.def)             Requested size: 164.30028pt x 92.73778pt.
  [28
 
- <../results/IDQN_W7//Fig_W7_JointQ_Averse.png> <../results/IDQN_W7/Fig_W7_Join
-tQ_Seeking.png>]
+ <../results/IDQN_W7/Fig_W7_JointQ_Baseline.png> <../results/IDQN_W7//Fig_W7_Jo
+intQ_Averse.png>]
 Writeup.tex:627: Undefined control sequence.
 \beamer@doifinframe ...nothing problem \footnonte 
                                                   {e.i. there exists dis-coo...
@@ -2288,10 +2288,10 @@ Package logreq Info: Writing requests to 'Writeup.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36700 strings out of 479799
- 698987 string characters out of 2869724
- 1373394 words of memory out of 3000000
- 52822 multiletter control sequences out of 15000+200000
+ 36695 strings out of 479799
+ 698872 string characters out of 2869724
+ 1373325 words of memory out of 3000000
+ 52818 multiletter control sequences out of 15000+200000
  547770 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  125i,20n,126p,783b,755s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2328,7 +2328,7 @@ a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/maso
 n/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
 Output written on C:/Users\mason\Desktop\MARL\docs\out\Writeup.pdf (53 pages, 4
-314220 bytes).
+316276 bytes).
 PDF statistics:
  739 PDF objects out of 1000 (max. 8388607)
  182 named destinations out of 1000 (max. 500000)
