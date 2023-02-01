@@ -29,6 +29,9 @@ policy_name2sym = {}
 policy_name2sym['Baseline'] = '0'
 policy_name2sym['Averse'] = 'A'
 policy_name2sym['Seeking'] = 'S'
+# corr_assum_marker_key = '* '
+corr_assum_marker_key = ' '
+corr_assum_marker_plot = '✓'
 
 legend_sz = 13
 
@@ -57,21 +60,22 @@ def main():
     group_face_colors,test_cases = [], []
     n=0
     test_cases.append(['Baseline','Baseline']); n+=1
-    # test_cases.append(['Averse', 'Baseline']);  n+=1
-    test_cases.append(['Seeking', 'Baseline']); n+=1
-    group_face_colors += [(min([1, c0 + inc * (1-c0)/n]), inc * (1-c0), inc * (1-c0)/n, 1.0) for inc in range(n)]
-
-    # n=0
-    # # test_cases.append(['Baseline', 'Averse']);  n+=1
-    # test_cases.append(['Averse', 'Averse']);    n += 1
-    # test_cases.append(['Seeking', 'Averse']);   n += 1
+    test_cases.append(['Averse', 'Baseline']);  n+=1
+    # test_cases.append(['Seeking', 'Baseline']); n+=1
+    group_face_colors += [(inc * (1-c0)/n, inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), 1.0) for inc in range(n)]
     # group_face_colors += [(inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), inc * (1-c0)/n, 1.0) for inc in range(n)]
 
+    n=0
+    test_cases.append(['Averse', 'Averse']);    n += 1
+    test_cases.append(['Baseline', 'Averse']);  n+=1
+    # test_cases.append(['Seeking', 'Averse']);   n += 1
+    group_face_colors += [(inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), inc * (1-c0)/n, 1.0) for inc in range(n)]
+
     n = 0
-    test_cases.append(['Baseline', 'Seeking']); n+=1
-    test_cases.append(['Seeking', 'Seeking']);  n += 1
+    # test_cases.append(['Baseline', 'Seeking']); n+=1
+    # test_cases.append(['Seeking', 'Seeking']);  n += 1
     # test_cases.append(['Averse', 'Seeking']); n += 1
-    group_face_colors += [(inc * (1-c0)/n, inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), 1.0) for inc in range(n)]
+    # group_face_colors += [(inc * (1-c0)/n, inc * (1-c0)/n, min([1, c0 + inc * (1-c0)/n]), 1.0) for inc in range(n)]
 
 
 
@@ -122,7 +126,7 @@ def main():
 
     # comp_fig.savefig(save_dir + save_indv_fname)
     get_summary(summary_ax, all_data)
-    summary_fig.savefig(save_dir + save_summary_fname)
+    summary_fig.savefig(save_dir + save_summary_fname); print(f'Saved: {save_dir + save_summary_fname}')
     plt.show()
 
 def get_summary(ax,df,has_legend=True):
@@ -205,7 +209,7 @@ def test_policies(iWorld,policy_type,policyR,policyH,num_episodes,sigdig=2):
     policy_types =  "$\mathcal{C}^{\; \hat{\pi}_{" + f"{policy_name2sym[policy_type[iR]]}" \
                     + "}}_{\; \pi_{" + f"{policy_name2sym[policy_type[iH]]}" +"}}$"
     # "$\mathcal{C}^{\hat{\pi}_{H}}_{\pi_{H}}$"
-    if policy_type[iR] == policy_type[iH]: policy_types='* ' +policy_types
+    if policy_type[iR] == policy_type[iH]: policy_types=corr_assum_marker_key +policy_types
     else: policy_types = '  ' + policy_types
     env = PursuitEvastionGame(iWorld, device, dtype)
 
@@ -266,7 +270,7 @@ def test_policies(iWorld,policy_type,policyR,policyH,num_episodes,sigdig=2):
     # _ptypes = f"(${policy_name2sym[policy_type[iR]]}$ x ${policy_name2sym[policy_type[iH]]}$)"
     _ptypes = "$\mathcal{C}^{\; \hat{\pi}_{" + f"{policy_name2sym[policy_type[iR]]}" \
                    + "}}_{\; \pi_{" + f"{policy_name2sym[policy_type[iH]]}" + "}}$"
-    if policy_type[iR] == policy_type[iH]: _ptypes = '* ' +_ptypes
+    if policy_type[iR] == policy_type[iH]: _ptypes = corr_assum_marker_key +_ptypes
     else: _ptypes = '  ' +_ptypes
 
 
@@ -365,7 +369,7 @@ def set_true_style(ax):
             corners = rect.get_corners()
             x = np.mean([corners[0][0], corners[1][0]])
             y = np.mean([corners[2][1], corners[3][1]])
-            ax.text(x, y, '*', fontsize=10, ha='center')
+            ax.text(x, y, corr_assum_marker_plot, fontsize=10, ha='center')
             # ax.text(x, y, ['BL', 'A', 'S'][i], fontsize=10, ha='center',va='bottom')
             # i+=1
 
